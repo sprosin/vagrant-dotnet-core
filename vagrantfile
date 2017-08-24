@@ -1,0 +1,60 @@
+## Vagrantfile
+Vagrant.configure("2") do |config|
+
+  # Box details
+  config.vm.box = 'ubuntu/xenial64'
+  
+  config.ssh.forward_agent = true
+  config.ssh.username = "ubuntu"
+  config.vm.hostname = "dotnetcore.vm"
+  config.vm.synced_folder "./src", "/home/ubuntu/src"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+  
+  # Fix for: "stdin: is not a tty"
+  # https://github.com/mitchellh/vagrant/issues/1673#issuecomment-28288042
+  config.ssh.shell = %{bash -c 'BASH_ENV=/etc/profile exec bash'}
+
+  # Plugins
+  config.berkshelf.enabled = true
+  config.omnibus.chef_version = :latest
+
+  # Network
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :private_network, ip: "10.0.15.10"
+  
+  # Repositories
+  #apt_repository 'dotnet' do
+  #  uri        'https://apt-mo.trafficmanager.net/repos/dotnet-release/'
+  #  distribution 'xenial'
+  #  components ['main']
+  #end
+  
+  #node['dotnetcore']['package']['name'] = 'dotnet-dev-1.1.0-preview1-005077'
+  #node['dotnetcore']['apt_package_source'] = 'https://apt-mo.trafficmanager.net/repos/dotnet-release/'
+
+  # Chef solo provisioning
+  config.vm.provision :chef_solo do |chef|
+    chef.add_recipe "chef_nginx"
+	chef.add_recipe "dotnetcore"
+	
+	chef.json = {
+     "dotnetcore" => {
+       "package" => {
+	     "name" => "dotnet-sdk-2.0.0-preview2-006497"
+	   }
+      }
+    }
+  end
+  
+  config.vm.provision "shell", inline: <<-SHELL
+    export DEBIAN_FRONTEND=noninteractive
+    export LANGUAGE=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
+    locale-gen en_US.UTF-8
+    dpkg-reconfigure locales
+  SHELL
+
+end
