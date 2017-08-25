@@ -1,4 +1,4 @@
-# Vagrant dotnet core image
+# Vagrant dotnet core VM
 
 The idea of this project is to build up-to-date vagrant file for compiling linux-based .net core-enabled VM.
 
