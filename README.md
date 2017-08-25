@@ -21,6 +21,7 @@ Have an idea how to make the vagrant file better? The following options are avai
 
 ## <a name="prerequisites"></a> Prerequisites
 
+- [Virtual Box](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/downloads.html)
 - [Vagrant Omnibus](https://github.com/chef/vagrant-omnibus) to install chef on VM
 - [Vagrant Berkshelf Plugin](https://github.com/berkshelf/vagrant-berkshelf) to track chef package dependencies
