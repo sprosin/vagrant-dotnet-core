@@ -2,7 +2,7 @@
 
 The idea of this project is to build up-to-date vagrant file for compiling linux-based .net core-enabled VM.
 
-As you know there is no "official" vagrant file from Microsoft so let's create it!
+As you know there is no "official" vagrant file from Microsoft and Docker images are provided instead. However, current version of Docker for Windows runs on 64bit Windows 10 only! The idea of this repository is to provide an easy option to test .net core apps in linux environment.
 
 Quick Links:
 
