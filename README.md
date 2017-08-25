@@ -7,6 +7,7 @@ As you know there is no "official" vagrant file from Microsoft so let's create i
 Quick Links:
 
 *  [Contributing](#contributing)
+*  [Prerequisites](#prerequisites)
 *  [Building VM](#building)
 *  [Using VM](#using)
 
@@ -17,6 +18,12 @@ Have an idea how to make the vagrant file better? The following options are avai
 - Create issue with bug, enhancement or new feature requested
 - Send pull request
 - Let me know any other way ;)
+
+## <a name="prerequisites"></a> Prerequisites
+
+- [Vagrant](https://www.vagrantup.com/downloads.html)
+- [Vagrant Omnibus](https://github.com/chef/vagrant-omnibus) to install chef on VM
+- [Vagrant Berkshelf Plugin](https://github.com/berkshelf/vagrant-berkshelf) to track chef package dependencies
 
 ## <a name="building"></a> Building VM
 
