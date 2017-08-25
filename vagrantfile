@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
 	chef.json = {
      "dotnetcore" => {
        "package" => {
-	     "name" => "dotnet-sdk-2.0.0-preview2-006497"
+	     "name" => "dotnet-sdk-2.0.0"
 	   }
       }
     }

@@ -7,8 +7,8 @@ As you know there is no "official" vagrant file from Microsoft so let's create i
 Quick Links:
 
 *  [Contributing](#contributing)
-*  [Building](#building)
-*  [Installing](#running)
+*  [Building VM](#building)
+*  [Using VM](#using)
 
 ## <a name="contributing"></a> Contributing
 
@@ -18,10 +18,23 @@ Have an idea how to make the vagrant file better? The following options are avai
 - Send pull request
 - Let me know any other way ;)
 
-## <a name="building"></a> Building
+## <a name="building"></a> Building VM
 
-TBD..
+````
+c:\projects> git clone https://github.com/sprosin/vagrant-dotnet-core.git
+c:\projects> cd vagrant-dotnet-core\
+c:\projects> vagrant up
+````
 
-## <a name="running"></a> Running
+## <a name="running"></a> Using VM
 
-TBD..
+````
+c:\projects\vagrant-dotnet-core> vagrant ssh
+ubuntu@dotnetcore:~$ dotnet --version
+ubuntu@dotnetcore:~$ cd src
+ubuntu@dotnetcore:~/src$ mkdir consoleApp
+ubuntu@dotnetcore:~/src$ cd consoleApp
+ubuntu@dotnetcore:~/src/consoleApp$ dotnet new console
+ubuntu@dotnetcore:~/src/consoleApp$ dotnet run
+Hello World!
+````
