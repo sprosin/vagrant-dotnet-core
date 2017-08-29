@@ -1,5 +1,7 @@
 # Vagrant dotnet core VM
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vagrant-dotnet-core/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+
 The idea of this project is to build up-to-date vagrant file for compiling linux-based .net core-enabled VM.
 
 As you know there is no "official" vagrant file from Microsoft and Docker images are provided instead. However, current version of Docker for Windows runs on 64bit Windows 10 only! The idea of this repository is to provide an easy option to test .net core apps in linux environment.
