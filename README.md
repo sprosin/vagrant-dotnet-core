@@ -25,15 +25,15 @@ Have an idea how to make the vagrant file better? The following options are avai
 
 - [Virtual Box](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/downloads.html)
-- [Vagrant Omnibus](https://github.com/chef/vagrant-omnibus) to install chef on VM
-- [Vagrant Berkshelf Plugin](https://github.com/berkshelf/vagrant-berkshelf) to track chef package dependencies
+- (obsolete) [Vagrant Omnibus](https://github.com/chef/vagrant-omnibus) to install chef on VM
+- (obsolete) [Vagrant Berkshelf Plugin](https://github.com/berkshelf/vagrant-berkshelf) to track chef package dependencies
 
 ## <a name="building"></a> Building VM
 
 ````
 c:\projects> git clone https://github.com/sprosin/vagrant-dotnet-core.git
 c:\projects> cd vagrant-dotnet-core\
-c:\projects> vagrant up
+c:\projects\vagrant-dotnet-core> vagrant up
 ````
 
 ## <a name="running"></a> Using VM

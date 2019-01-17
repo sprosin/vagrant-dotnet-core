@@ -5,9 +5,9 @@ Vagrant.configure("2") do |config|
   config.vm.box = 'ubuntu/xenial64'
   
   config.ssh.forward_agent = true
-  config.ssh.username = "ubuntu"
+  #config.ssh.username = "ubuntu" # don't need anymore, username 'vagrant' would be used by default, see https://github.com/hashicorp/vagrant/issues/9416
   config.vm.hostname = "dotnetcore.vm"
-  config.vm.synced_folder "./src", "/home/ubuntu/src"
+  config.vm.synced_folder "./src", "/home/vagrant/src"
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024"
   end
@@ -17,8 +17,8 @@ Vagrant.configure("2") do |config|
   config.ssh.shell = %{bash -c 'BASH_ENV=/etc/profile exec bash'}
 
   # Plugins
-  config.berkshelf.enabled = true
-  config.omnibus.chef_version = :latest
+  #config.berkshelf.enabled = true
+  #config.omnibus.chef_version = :latest
 
   # Network
   config.vm.network :forwarded_port, guest: 80, host: 8080
@@ -35,18 +35,18 @@ Vagrant.configure("2") do |config|
   #node['dotnetcore']['apt_package_source'] = 'https://apt-mo.trafficmanager.net/repos/dotnet-release/'
 
   # Chef solo provisioning
-  config.vm.provision :chef_solo do |chef|
-    chef.add_recipe "chef_nginx"
-	chef.add_recipe "dotnetcore"
+  #config.vm.provision :chef_solo do |chef|
+    #chef.add_recipe "chef_nginx"
+	#chef.add_recipe "dotnetcore"
 	
-	chef.json = {
-     "dotnetcore" => {
-       "package" => {
-	     "name" => "dotnet-sdk-2.0.0"
-	   }
-      }
-    }
-  end
+	#chef.json = {
+    # "dotnetcore" => {
+    #   "package" => {
+	#     "name" => "dotnet-sdk-2.0.0"
+	#   }
+    #  }
+    #}
+  #end
   
   config.vm.provision "shell", inline: <<-SHELL
     export DEBIAN_FRONTEND=noninteractive
@@ -55,6 +55,11 @@ Vagrant.configure("2") do |config|
     export LC_ALL=en_US.UTF-8
     locale-gen en_US.UTF-8
     dpkg-reconfigure locales
+	wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
+	sudo dpkg -i packages-microsoft-prod.deb
+	sudo apt-get install apt-transport-https -y
+	sudo apt-get update -y
+	sudo apt-get install dotnet-sdk-2.2 -y
   SHELL
 
 end
